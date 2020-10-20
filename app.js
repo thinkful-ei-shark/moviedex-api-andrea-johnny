@@ -14,7 +14,19 @@ app.get('/movie', (req, res, next) => {
 
   if(genre) {
     movieList = movieList.filter(movie => {
-      return movie.genre.toLowerCase() === genre.toLowerCase();
+      return movie.genre.toLowerCase().includes(genre.toLowerCase());
+    });
+  }
+
+  if(country) {
+    movieList = movieList.filter(movie => {
+      return movie.country.toLowerCase().includes(country.toLowerCase());
+    });
+  }
+
+  if(avg_vote) {
+    movieList = movieList.filter(movie => {
+      return Number(movie.avg_vote) >= Number(avg_vote);
     });
   }
 
